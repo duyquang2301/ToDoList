@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/grid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <title>Todo List</title>
+</head>
+
+<body>
+    <header id="header">
+        <div class="logo">
+            <img src="./assets/img/logo_task.png" alt="" class="logo__image">
+            <div class="logo__heading">
+                <span class="logo__heading-title">Let's get shit done!</span>
+                <img src="./assets/img/peace.png" alt="" class="logo__heading-image">
+            </div>
+        </div>
+        <button id="btnAddTask">+ New task</button>
+    </header>
+
+    <div id="container">
+        <div class="row">
+            <div class="col c-12 l-4">
+                <div class="container__part" id="todo">
+                    <div class="part__header">
+                        <span class="part__name">Todo</span>
+                        <span class="part__quantity"></span>
+                    </div>
+                    <div class="part__content" id="listTodo"></div>
+                </div>
+            </div>
+
+            <div class="col c-12 l-4">
+                <div class="container__part" id="doing">
+                    <div class="part__header">
+                        <span class="part__name">Doing</span>
+                        <span class="part__quantity"></span>
+                    </div>
+                    <div class="part__content" id="listDoing"></div>
+                </div>
+            </div>
+
+            <div class="col c-12 l-4">
+                <div class="container__part" id="finished">
+                    <div class="part__header">
+                        <span class="part__name">Finished</span>
+                        <span class="part__quantity"></span>
+                    </div>
+                    <div class="part__content" id="listFinished"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-add-task none">
+        <form action="" id="addForm">
+            <div class="form-lable">
+                <label for="">Add new Todo</label>
+                <i class="fa-solid fa-x" id="btnCloseAddForm"></i>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" id="addCategory" placeholder="Category">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" id="addTitle" placeholder="Title">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <textarea name="" class="form-input" id="addContent" cols="30" rows="3"
+                    placeholder="Content"></textarea>
+                <span class="form-message"></span>
+            </div>
+            <input type="submit" class="form-input" value="Submit" id="btnSubmit">
+        </form>
+    </div>
+
+    <div class="form-edit-task none">
+        <form action="" id="editForm">
+            <div class="form-lable">
+                <label for="">Edit Todo</label>
+                <i class="fa-solid fa-x" id="btnCloseEditForm"></i>
+            </div>
+            <input type="hidden" id="indexEdit">
+            <div class="form-group">
+                <input type="" class="form-input" id="editCategory" placeholder="Category">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <input type="" class="form-input" id="editTitle" placeholder="Title">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <textarea name="" class="form-input" id="editContent" cols="30" rows="3"
+                    placeholder="Content"></textarea>
+                <span class="form-message"></span>
+            </div>
+            <div class="form-radio form-group">
+                <div class="form-radio--item">
+                    <input type="radio" id="todoRadio" name="selected_type" value="todo">
+                    <label for="todo">Todo</label><br>
+                </div>
+                <div class="form-radio--item">
+                    <input type="radio" id="doingRadio" name="selected_type" value="doing">
+                    <label for="doing">Doing</label><br>
+                </div>
+                <div class="form-radio--item">
+                    <input type="radio" id="finishedRadio" name="selected_type" value="finished">
+                    <label for="finished">Finished</label>
+                </div>
+            </div>
+            <input type="submit" class="form__input" value="Submit" id="btnSubmit">
+        </form>
+    </div>
+
+    <script src="./assets/js/main.js"></script>
+    <script>
+        Validator({
+            form: '#addForm',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#addCategory', 'Vui lòng nhập trường này!'),
+                Validator.isRequired('#addTitle', 'Vui lòng nhập trường này!'),
+                Validator.isRequired('#addContent', 'Vui lòng nhập trường này!'),
+            ],
+        });
+        Validator({
+            form: '#editForm',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#editCategory', 'Vui lòng nhập trường này!'),
+                Validator.isRequired('#editTitle', 'Vui lòng nhập trường này!'),
+                Validator.isRequired('#editContent', 'Vui lòng nhập trường này!'),
+                Validator.isRequired('input[name="selected_type"]', 'Vui lòng chọn trường này!'),
+            ],
+        });
+    </script>
+</body>
+
+</html>
